@@ -39,7 +39,7 @@ static const Rule rules[] = {
 	{ "Gimp",     NULL,       NULL,       0,            1,           -1 },
 	{ "Firefox",  NULL,       NULL,       1 << 6,       0,           -1 },
 	{ "Viber",    NULL,       NULL,       1 << 2,       0,           -1 },
-	{ "discord",    NULL,       NULL,       1 << 2,       0,           -1 },
+	{ "discord",  NULL,       NULL,       1 << 2,       0,           -1 },
 	{ NULL,       NULL, "Microsoft Teams",1 << 2,       0,           -1 }
 };
 
@@ -82,8 +82,8 @@ static Key keys[] = {
 	/* modifier                     key        function        argument */
 	{ MODKEY,                       XK_p,      spawn,          {.v = dmenucmd } },
 	{ MODKEY|ShiftMask,             XK_Return, spawn,          {.v = termcmd } },
-	{ MODKEY|ShiftMask,				XK_a,      spawn,          {.v = firefoxcmd} },	
-	{ MODKEY|ShiftMask,				XK_h,      spawn,          {.v = htopcmd} },	
+	{ MODKEY|ShiftMask,				XK_a,      spawn,          {.v = firefoxcmd} },
+	{ MODKEY|ShiftMask,				XK_h,      spawn,          {.v = htopcmd} },
 	{ MODKEY|ShiftMask,				XK_t,      spawn,          {.v = ttyclockcmd} },	
 	{ MODKEY,                       XK_F1,     spawn,          {.v = vibercmd } },
 	{ MODKEY,                       XK_F2,     spawn,          {.v = discordcmd } },
@@ -99,6 +99,7 @@ static Key keys[] = {
     { MODKEY,XK_Print,  	        spawn, SHCMD("maim -su | xclip -selection clipboard -t image/png; xclip -out -selection clipboard > ~/Pictures/Screenshots/$(date '+%F-%H-%M-%S').png")},
 
     { MODKEY,XK_space,              spawn, SHCMD("pkill -RTMIN+12 dwmblocks;")},
+	{ MODKEY,XK_e,        spawn, SHCMD("/home/vlada/suckless/exit.sh;")},
 
 	{ MODKEY,                       XK_b,      togglebar,      {0} },
 	{ MODKEY,                       XK_j,      focusstack,     {.i = +1 } },
