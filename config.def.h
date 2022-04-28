@@ -2,10 +2,10 @@
 //#include <X11/XF86keysym.h>
 #define XF86_AudioMute			0x1008ff12
 #define XF86_AudioMicMute		0x1008ffb2
-#define XF86_AudioRaiseVolume	0x1008ff13
-#define XF86_AudioLowerVolume	0x1008ff11
-#define XF86XK_MonBrightnessUp   0x1008FF02  // Monitor/panel brightness
-#define XF86XK_MonBrightnessDown 0x1008FF03  // Monitor/panel brightness
+#define XF86_AudioRaiseVolume		0x1008ff13
+#define XF86_AudioLowerVolume		0x1008ff11
+#define XF86XK_MonBrightnessUp   	0x1008FF02  // Monitor/panel brightness
+#define XF86XK_MonBrightnessDown 	0x1008FF03  // Monitor/panel brightness
 
 /* appearance */
 static const unsigned int borderpx  = 2;        /* border pixel of windows */
@@ -14,8 +14,8 @@ static const unsigned int snap      = 32;       /* snap pixel */
 static const int swallowfloating    = 0;        /* 1 means swallow floating windows by default */
 static const int showbar            = 1;        /* 0 means no bar */
 static const int topbar             = 1;        /* 0 means bottom bar */
-static const char *fonts[]          = { "monospace:size=12", "SpaceMono Nerd Font Mono:style=Regular"};
-static const char dmenufont[]       = "monospace:size=12";
+static const char *fonts[]          = { "JetBrainsMono:pixelsize=13:antialias=true:autohint=true", "SpaceMono Nerd Font Mono:style=Regular"};
+static const char dmenufont[]       = "JetBrainsMono:pixelsize=15:antialias=true:autohint=true";
 static const char col_gray1[]       = "#222222";
 static const char col_gray2[]       = "#444444";
 static const char col_gray3[]       = "#bbbbbb";
@@ -83,24 +83,24 @@ static Key keys[] = {
 	/* modifier                     key        function        argument */
 	{ MODKEY,                       XK_p,      spawn,          {.v = dmenucmd } },
 	{ MODKEY|ShiftMask,             XK_Return, spawn,          {.v = termcmd } },
-	{ MODKEY|ShiftMask,				XK_a,      spawn,          {.v = firefoxcmd} },
-	{ MODKEY|ShiftMask,				XK_h,      spawn,          {.v = htopcmd} },
-	{ MODKEY|ShiftMask,				XK_t,      spawn,          {.v = ttyclockcmd} },	
+	{ MODKEY|ShiftMask,             XK_a,      spawn,          {.v = firefoxcmd} },
+	{ MODKEY|ShiftMask,             XK_h,      spawn,          {.v = htopcmd} },
+	{ MODKEY|ShiftMask,             XK_t,      spawn,          {.v = ttyclockcmd} },
 	{ MODKEY,                       XK_F1,     spawn,          {.v = vibercmd } },
 	{ MODKEY,                       XK_F2,     spawn,          {.v = discordcmd } },
 	{ MODKEY,                       XK_F3,     spawn,          {.v = teamscmd } },
 
-	{ 0,XF86_AudioMute,				spawn, SHCMD("pulseaudio-ctl mute; pkill -RTMIN+10 dwmblocks;")},	
-	{ 0,XF86_AudioMicMute,			spawn, SHCMD("pulseaudio-ctl mute-input; pkill -RTMIN+10 dwmblocks;")},
-	{ 0,XF86_AudioRaiseVolume,		spawn, SHCMD("pulseaudio-ctl up; pkill -RTMIN+10 dwmblocks;")},
-	{ 0,XF86_AudioLowerVolume,		spawn, SHCMD("pulseaudio-ctl down; pkill -RTMIN+10 dwmblocks;")},
-	{ 0,XF86XK_MonBrightnessUp,		spawn, SHCMD("xbacklight -inc 10; pkill -RTMIN+11 dwmblocks;")},
+	{ 0,XF86_AudioMute,		spawn, SHCMD("pulseaudio-ctl mute; pkill -RTMIN+10 dwmblocks;")},
+	{ 0,XF86_AudioMicMute,		spawn, SHCMD("pulseaudio-ctl mute-input; pkill -RTMIN+10 dwmblocks;")},
+	{ 0,XF86_AudioRaiseVolume,	spawn, SHCMD("pulseaudio-ctl up; pkill -RTMIN+10 dwmblocks;")},
+	{ 0,XF86_AudioLowerVolume,	spawn, SHCMD("pulseaudio-ctl down; pkill -RTMIN+10 dwmblocks;")},
+	{ 0,XF86XK_MonBrightnessUp,	spawn, SHCMD("xbacklight -inc 10; pkill -RTMIN+11 dwmblocks;")},
 	{ 0,XF86XK_MonBrightnessDown,	spawn, SHCMD("xbacklight -dec 10; pkill -RTMIN+11 dwmblocks;")},
-    { 0,XK_Print,                   spawn, SHCMD("maim -g 1600x900+0+0 | xclip -selection clipboard -t image/png; xclip -out -selection clipboard > ~/Pictures/Screenshots/$(date '+%F-%H-%M-%S').png")},
-    { MODKEY,XK_Print,  	        spawn, SHCMD("maim -su | xclip -selection clipboard -t image/png; xclip -out -selection clipboard > ~/Pictures/Screenshots/$(date '+%F-%H-%M-%S').png")},
+	{ 0,XK_Print,                   spawn, SHCMD("maim -g 1600x900+0+0 | xclip -selection clipboard -t image/png; xclip -out -selection clipboard > ~/Pictures/Screenshots/$(date '+%F-%H-%M-%S').png")},
+	{ MODKEY,XK_Print,              spawn, SHCMD("maim -su | xclip -selection clipboard -t image/png; xclip -out -selection clipboard > ~/Pictures/Screenshots/$(date '+%F-%H-%M-%S').png")},
 
-    { MODKEY,XK_space,              spawn, SHCMD("pkill -RTMIN+12 dwmblocks;")},
-	{ MODKEY,XK_e,        spawn, SHCMD("/home/vlada/suckless/exit.sh;")},
+	{ MODKEY,XK_space,              spawn, SHCMD("pkill -RTMIN+12 dwmblocks;")},
+	{ MODKEY,XK_e,                  spawn, SHCMD("/home/vlada/suckless/exit.sh;")},
 
 	{ MODKEY,                       XK_b,      togglebar,      {0} },
 	{ MODKEY,                       XK_j,      focusstack,     {.i = +1 } },
