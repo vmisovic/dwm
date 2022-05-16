@@ -29,7 +29,7 @@ static const char *colors[][3]      = {
 };
 
 /* tagging */
-static const char *tags[] = { "", "", "", "4", "5", "6" };
+static const char *tags[] = { "", "", "", "4", "", "6" };
 
 static const Rule rules[] = {
 	/* xprop(1):
@@ -38,7 +38,9 @@ static const Rule rules[] = {
 	 */
 	/* class      instance    title       tags mask     isfloating isterminal  noswallow  monitor */
 	{ "st-256color",NULL,     NULL,       0,            0,         1,           0,        -1 },
+	{ "Bilijar",	NULL,     NULL,       0,            0,         0,           1,        -1 },
 	{ "Firefox",  NULL,       NULL,       1 << 6,       0,         0,          -1,        -1 },
+	{ "KeePassXC",NULL,       NULL,       1 << 4,       0,         0,          -1,        -1 },
 	{ "Viber",    NULL,       NULL,       1 << 2,       0,         0,           0,        -1 },
 	{ "discord",  NULL,       NULL,       1 << 2,       0,         0,           0,        -1 },
 	{ NULL,       NULL, "Microsoft Teams",1 << 2,       0,         0,           0,        -1 },
@@ -77,6 +79,7 @@ static const char *scratchpadcmd[] = { "st", "-t", scratchpadname, "-g", "120x34
 static const char *htopcmd[]  = { "st", "htop" , NULL };
 static const char *ttyclockcmd[]  = { "st", "tty-clock", "-cbsB" , NULL };
 static const char *firefoxcmd[] = {"firefox", NULL};
+static const char *keepassxccmd[] = {"keepassxc", NULL};
 static const char *vibercmd[] = {"viber", NULL};
 static const char *discordcmd[] = {"discord", NULL};
 static const char *teamscmd[] = {"teams", NULL};
@@ -86,6 +89,7 @@ static Key keys[] = {
 	{ MODKEY,                       XK_p,      spawn,          {.v = dmenucmd } },
 	{ MODKEY|ShiftMask,             XK_Return, spawn,          {.v = termcmd } },
 	{ MODKEY|ShiftMask,             XK_a,      spawn,          {.v = firefoxcmd} },
+	{ MODKEY|ShiftMask,             XK_k,      spawn,          {.v = keepassxccmd} },
 	{ MODKEY|ShiftMask,             XK_h,      spawn,          {.v = htopcmd} },
 	{ MODKEY|ShiftMask,             XK_t,      spawn,          {.v = ttyclockcmd} },
 	{ MODKEY,                       XK_grave,  togglescratch,  {.v = scratchpadcmd } },
