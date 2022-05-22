@@ -36,14 +36,16 @@ static const Rule rules[] = {
 	 *	WM_CLASS(STRING) = instance, class
 	 *	WM_NAME(STRING) = title
 	 */
-	/* class      instance    title       tags mask     isfloating isterminal  noswallow  monitor */
-	{ "st-256color",NULL,     NULL,       0,            0,         1,           0,        -1 },
-	{ "Bilijar",	NULL,     NULL,       0,            0,         0,           1,        -1 },
-	{ "Firefox",  NULL,       NULL,       1 << 6,       0,         0,          -1,        -1 },
-	{ "KeePassXC",NULL,       NULL,       1 << 4,       0,         0,          -1,        -1 },
-	{ "Viber",    NULL,       NULL,       1 << 2,       0,         0,           0,        -1 },
-	{ "discord",  NULL,       NULL,       1 << 2,       0,         0,           0,        -1 },
-	{ NULL,       NULL, "Microsoft Teams",1 << 2,       0,         0,           0,        -1 },
+	/* class         instance    title        tags mask  isfloating  isterminal  noswallow  monitor */
+	{ "st-256color", NULL,       NULL,        0,         0,          1,          0,         -1 },
+	{ "Bilijar",     NULL,       NULL,        0,         1,          0,          1,         -1 },
+	{ "test",        NULL,       NULL,        0,         1,          0,          1,         -1 },
+	{ "Firefox",     NULL,       NULL,        1 << 6,    0,          0,          -1,        -1 },
+	{ "KeePassXC",   NULL,       NULL,        1 << 4,    0,          0,          -1,        -1 },
+	{ "Viber",       NULL,       NULL,        1 << 2,    0,          0,          0,         -1 },
+	{ "discord",     NULL,       NULL,        1 << 2,    0,          0,          0,         -1 },
+	{ NULL,          NULL,"Microsoft Teams",  1 << 2,    0,          0,          0,         -1 },
+	{ NULL,          NULL,"Event Tester",     0,         0,          0,          1,         -1 }, /* xev */
 };
 
 /* layout(s) */
