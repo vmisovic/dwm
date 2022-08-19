@@ -105,11 +105,11 @@ static Key keys[] = {
 	{ 0,XF86_AudioLowerVolume,	spawn, SHCMD("pulseaudio-ctl down; pkill -RTMIN+10 dwmblocks;")},
 	{ 0,XF86XK_MonBrightnessUp,	spawn, SHCMD("xbacklight -inc 10; pkill -RTMIN+11 dwmblocks;")},
 	{ 0,XF86XK_MonBrightnessDown,	spawn, SHCMD("xbacklight -dec 10; pkill -RTMIN+11 dwmblocks;")},
-	{ 0,XK_Print,                   spawn, SHCMD("maim -g 1600x900+0+0 | xclip -selection clipboard -t image/png; xclip -out -selection clipboard > ~/Pictures/Screenshots/$(date '+%F-%H-%M-%S').png")},
-	{ MODKEY,XK_Print,              spawn, SHCMD("maim -su | xclip -selection clipboard -t image/png; xclip -out -selection clipboard > ~/Pictures/Screenshots/$(date '+%F-%H-%M-%S').png")},
+	{ 0,XK_Print,                   spawn, SHCMD("screenshot.sh fullscreen")},
+	{ MODKEY,XK_Print,              spawn, SHCMD("screenshot.sh selection")},
 
 	{ MODKEY,XK_space,              spawn, SHCMD("pkill -RTMIN+12 dwmblocks;")},
-	{ MODKEY,XK_e,                  spawn, SHCMD("/home/vlada/suckless/exit.sh;")},
+	{ MODKEY,XK_e,                  spawn, SHCMD("exit.sh;")},
 
 	{ MODKEY,                       XK_b,      togglebar,      {0} },
 	{ MODKEY,                       XK_j,      focusstack,     {.i = +1 } },
