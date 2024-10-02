@@ -8,13 +8,13 @@
 #define XF86XK_MonBrightnessDown 	0x1008FF03  // Monitor/panel brightness
 
 /* appearance */
-static const unsigned int borderpx  = 2;        /* border pixel of windows */
-static const unsigned int gappx     = 8;        /* gaps between windows */
+static const unsigned int borderpx  = 3;        /* border pixel of windows */
+static const unsigned int gappx     = 9;        /* gaps between windows */
 static const unsigned int snap      = 32;       /* snap pixel */
 static const int swallowfloating    = 0;        /* 1 means swallow floating windows by default */
 static const int showbar            = 1;        /* 0 means no bar */
 static const int topbar             = 1;        /* 0 means bottom bar */
-static const char *fonts[]          = { "JetBrainsMono Nerd Font:style=SemiBold:pixelsize=13:antialias=true:autohint=true"};
+static const char *fonts[]          = { "JetBrainsMono NFM:style=SemiBold:pixelsize=20:antialias=true:autohint=true"};
 static const char col_gray1[]       = "#222222";
 static const char col_gray2[]       = "#444444";
 static const char col_gray3[]       = "#bbbbbb";
@@ -28,7 +28,7 @@ static const char *colors[][3]      = {
 };
 
 /* tagging */
-static const char *tags[] = { "", "爵", "", "4", "", "6" };
+static const char *tags[] = { "", "󰖟", "󱆖", "4", "5", "6" };
 
 static const Rule rules[] = {
 	/* xprop(1):
@@ -39,8 +39,8 @@ static const Rule rules[] = {
 	{ "st-256color", NULL,       NULL,        0,         0,          1,          0,         -1 },
 	{ "Bilijar",     NULL,       NULL,        0,         1,          0,          1,         -1 },
 	{ "test",        NULL,       NULL,        0,         1,          0,          1,         -1 },
+	{ NULL,          NULL,       "test",      0,         1,          0,          1,         -1 },
 	{ "Firefox",     NULL,       NULL,        1 << 6,    0,          0,          -1,        -1 },
-	{ "KeePassXC",   NULL,       NULL,        1 << 4,    0,          0,          -1,        -1 },
 	{ "Viber",       NULL,       NULL,        1 << 2,    0,          0,          0,         -1 },
 	{ "discord",     NULL,       NULL,        1 << 2,    0,          0,          0,         -1 },
 	{ NULL,          NULL,"Microsoft Teams",  1 << 2,    0,          0,          0,         -1 },
@@ -73,7 +73,7 @@ static const Layout layouts[] = {
 
 /* commands */
 static char dmenumon[2] = "0"; /* component of dmenucmd, manipulated in spawn() */
-static const char *dmenucmd[] = { "dmenu_run", "-i", "-c", "-l", "8", "-m", dmenumon, NULL };
+static const char *dmenucmd[] = { "dmenu_run", "-i", "-c", "-bw", "3", "-p", "Run:", "-l", "10", "-sf", "#000000", "-sb", "#00bcd4", "-m", dmenumon, NULL };
 static const char *termcmd[]  = { "st", NULL };
 static const char scratchpadname[] = "scratchpad";
 static const char *scratchpadcmd[] = { "st", "-t", scratchpadname, "-g", "120x34", NULL };
@@ -83,7 +83,6 @@ static const char *firefoxcmd[] = {"firefox", NULL};
 static const char *keepassxccmd[] = {"keepassxc", NULL};
 static const char *vibercmd[] = {"viber", NULL};
 static const char *discordcmd[] = {"discord", NULL};
-static const char *teamscmd[] = {"teams", NULL};
 
 static Key keys[] = {
 	/* modifier                     key        function        argument */
@@ -96,19 +95,19 @@ static Key keys[] = {
 	{ MODKEY,                       XK_grave,  togglescratch,  {.v = scratchpadcmd } },
 	{ MODKEY,                       XK_F1,     spawn,          {.v = vibercmd } },
 	{ MODKEY,                       XK_F2,     spawn,          {.v = discordcmd } },
-	{ MODKEY,                       XK_F3,     spawn,          {.v = teamscmd } },
 
-	{ 0,XF86_AudioMute,		spawn, SHCMD("pulseaudio-ctl mute; pkill -RTMIN+10 dwmblocks;")},
-	{ 0,XF86_AudioMicMute,		spawn, SHCMD("pulseaudio-ctl mute-input; pkill -RTMIN+10 dwmblocks;")},
-	{ 0,XF86_AudioRaiseVolume,	spawn, SHCMD("pulseaudio-ctl up; pkill -RTMIN+10 dwmblocks;")},
-	{ 0,XF86_AudioLowerVolume,	spawn, SHCMD("pulseaudio-ctl down; pkill -RTMIN+10 dwmblocks;")},
-	{ 0,XF86XK_MonBrightnessUp,	spawn, SHCMD("xbacklight -inc 10; pkill -RTMIN+11 dwmblocks;")},
-	{ 0,XF86XK_MonBrightnessDown,	spawn, SHCMD("xbacklight -dec 10; pkill -RTMIN+11 dwmblocks;")},
-	{ 0,XK_Print,                   spawn, SHCMD("screenshot.sh fullscreen")},
-	{ MODKEY,XK_Print,              spawn, SHCMD("screenshot.sh selection")},
+	{ 0, XF86_AudioMute,            spawn, SHCMD("volume.sh mute")},
+	{ 0, XF86_AudioMicMute,         spawn, SHCMD("volume.sh mute-input")},
+	{ 0, XF86_AudioRaiseVolume,     spawn, SHCMD("volume.sh up")},
+	{ 0, XF86_AudioLowerVolume,     spawn, SHCMD("volume.sh down")},
+	{ 0, XF86XK_MonBrightnessUp,    spawn, SHCMD("brightness.sh inc")},
+	{ 0, XF86XK_MonBrightnessDown,  spawn, SHCMD("brightness.sh dec")},
+	{ 0, XK_Print,                  spawn, SHCMD("screenshot.sh fullscreen")},
+	{ MODKEY, XK_Print,             spawn, SHCMD("screenshot.sh selection")},
 
-	{ MODKEY,XK_space,              spawn, SHCMD("pkill -RTMIN+12 dwmblocks;")},
-	{ MODKEY,XK_e,                  spawn, SHCMD("exit.sh;")},
+	{ MODKEY, XK_space,             spawn, SHCMD("keyboard.sh change")},
+	{ MODKEY, XK_e,                 spawn, SHCMD("exit.sh")},
+	{ MODKEY|ShiftMask, XK_l,       spawn, SHCMD("slock")},
 
 	{ MODKEY,                       XK_b,      togglebar,      {0} },
 	{ MODKEY,                       XK_j,      focusstack,     {.i = +1 } },
